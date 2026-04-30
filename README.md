@@ -1,6 +1,6 @@
 # Global Energy Transition Dashboard
 
-Este challenge segue a mesma lógica estrutural do exemplo validado em aula:
+Este challenge segue a seguinte lógica estrutural:
 
 - `index.html`
 - `css/style.css`
@@ -10,7 +10,7 @@ Este challenge segue a mesma lógica estrutural do exemplo validado em aula:
 
 ## Tratamento de dados
 
-O ficheiro original usado é `owid-energy-data.csv`.
+O ficheiro original usado como dataset  é o  `owid-energy-data.csv`.
 
 O script `process_data.py`:
 
