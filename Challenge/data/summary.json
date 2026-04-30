@@ -1,0 +1,26 @@
+{
+  "kpis": {
+    "sourceRows": 23377,
+    "countryRows": 17265,
+    "countriesLatest": 78,
+    "yearStart": 1900,
+    "yearEnd": 2024,
+    "latestYearInFile": 2025,
+    "latestComparableYear": 2024,
+    "worldRenewablesShare": 14.82,
+    "worldFossilShare": 81.26,
+    "worldCarbonIntensity": 471.08,
+    "portugalRenewablesShare": 39.74,
+    "portugalCarbonIntensity": 110.64,
+    "portugalRenewablesGain": 27.33
+  },
+  "quality": {
+    "sourceRows": 23377,
+    "rowsWithIsoCode": 17265,
+    "aggregateRowsRemoved": 5986,
+    "legacyRowsRemoved": 118,
+    "countryRowsKept": 17265,
+    "latestComparableYear": 2024,
+    "latestYearInFile": 2025
+  }
+}

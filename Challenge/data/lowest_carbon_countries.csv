@@ -1,0 +1,16 @@
+country,iso_code,year,primary_energy_consumption,electricity_demand,renewables_share_energy,fossil_share_energy,carbon_intensity_elec
+Norway,NOR,2024,555.63,138.67,71.81,28.19,29.66
+Switzerland,CHE,2024,339.27,63.97,39.87,43.17,34.58
+Sweden,SWE,2024,610.0,138.71,51.32,27.79,34.91
+France,FRA,2024,2519.9,471.8,16.47,46.14,40.48
+Finland,FIN,2024,334.59,85.73,38.89,36.77,66.63
+Venezuela,VEN,2024,698.55,80.13,25.84,74.16,85.86
+Slovakia,SVK,2024,181.08,26.57,11.3,63.88,96.55
+Austria,AUT,2024,412.34,71.69,43.35,56.65,103.48
+Brazil,BRA,2024,3919.05,757.31,49.62,49.38,106.06
+Portugal,PRT,2024,270.24,57.74,39.74,60.26,110.64
+New Zealand,NZL,2024,233.12,44.01,42.55,57.45,112.02
+Belgium,BEL,2024,644.12,86.35,11.45,76.64,126.96
+Denmark,DNK,2024,196.25,38.77,41.72,58.28,131.77
+Spain,ESP,2024,1624.25,270.71,25.86,65.8,146.22
+Croatia,HRV,2024,103.14,19.65,27.78,72.22,170.7

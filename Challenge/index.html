@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVDC - Global Energy Transition Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="page-header">
+        <div class="eyebrow">SVDC · Challenge</div>
+        <h1>Global Energy Transition Dashboard</h1>
+        <p class="header-copy">
+            Análise visual ao dataset OWID Energy com foco em transição energética,
+            intensidade carbónica e posicionamento de Portugal face a países de referência.
+        </p>
+        <div id="header-note" class="header-note"></div>
+    </header>
+
+    <section>
+        <h2>1. Executive Summary</h2>
+        <div id="kpi-grid" class="kpi-grid"></div>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>World Transition Trend</h3>
+                    <p>Evolução global entre 2000 e 2024 nas principais métricas energéticas.</p>
+                </div>
+                <div class="controls">
+                    <button class="world-metric active" data-metric="renewables_share_energy">Renewables share</button>
+                    <button class="world-metric" data-metric="fossil_share_energy">Fossil share</button>
+                    <button class="world-metric" data-metric="carbon_intensity_elec">Carbon intensity</button>
+                </div>
+            </div>
+            <div id="world-trend-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>2. Country Comparison</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Top Countries in 2024</h3>
+                    <p>Comparação do último ano completo com ordenação por métrica.</p>
+                </div>
+                <div class="controls">
+                    <button class="ranking-metric active" data-metric="primary_energy_consumption">Energy demand</button>
+                    <button class="ranking-metric" data-metric="renewables_share_energy">Renewables share</button>
+                    <button class="ranking-metric" data-metric="carbon_intensity_elec">Lowest carbon</button>
+                </div>
+            </div>
+            <div id="ranking-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Renewables vs Carbon</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Renewables vs Carbon Intensity</h3>
+                    <p>Cada bolha representa um país em 2024. O tamanho reflete consumo energético.</p>
+                </div>
+            </div>
+            <div class="country-layout">
+                <div id="scatter-chart"></div>
+                <aside id="country-detail" class="detail-card">
+                    <h4>Country Detail</h4>
+                    <p>Seleciona um país no scatterplot para ver detalhe.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Portugal in Context</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Portugal vs Spain, France, Germany and World</h3>
+                    <p>Leitura temporal para perceber se Portugal está a convergir ou a destacar-se.</p>
+                </div>
+                <div class="controls">
+                    <button class="peer-metric active" data-metric="renewables_share_energy">Renewables share</button>
+                    <button class="peer-metric" data-metric="fossil_share_energy">Fossil share</button>
+                    <button class="peer-metric" data-metric="carbon_intensity_elec">Carbon intensity</button>
+                </div>
+            </div>
+            <div id="peer-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>5. Country Energy Mix</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Country Energy Mix Donut</h3>
+                    <p>Explora o perfil energético de um país no último ano comparável.</p>
+                </div>
+                <div class="controls controls-inline">
+                    <label class="control-label" for="donut-country-select">Country</label>
+                    <select id="donut-country-select"></select>
+                </div>
+            </div>
+            <div id="donut-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>6. Peer Heatmap</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Peer Heatmap</h3>
+                    <p>Mapa de calor temporal para ver convergência ou divergência entre pares.</p>
+                </div>
+                <div class="controls controls-inline">
+                    <label class="control-label" for="heatmap-metric-select">Metric</label>
+                    <select id="heatmap-metric-select">
+                        <option value="renewables_share_energy">Renewables share</option>
+                        <option value="fossil_share_energy">Fossil share</option>
+                        <option value="carbon_intensity_elec">Carbon intensity</option>
+                    </select>
+                </div>
+            </div>
+            <div id="heatmap-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>7. Country Profile Radar</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Country Profile Radar</h3>
+                    <p>Comparação multi-métrica para perceber o perfil relativo de cada país.</p>
+                </div>
+                <div class="controls controls-inline">
+                    <label class="control-label" for="radar-country-select">Highlight</label>
+                    <select id="radar-country-select"></select>
+                </div>
+            </div>
+            <div id="radar-chart"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>8. Treemap of Major Consumers</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>Treemap of Major Consumers</h3>
+                    <p>Os maiores consumidores em 2024, com cor dada pela quota renovável.</p>
+                </div>
+            </div>
+            <div class="treemap-layout">
+                <div id="treemap-chart"></div>
+                <aside id="treemap-detail" class="detail-card compact-detail">
+                    <h4>Treemap Detail</h4>
+                    <p>Clica num retângulo para fixar o detalhe do país.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>9. Data Treatment</h2>
+        <div id="quality-grid" class="quality-grid"></div>
+        <div class="method-note">
+            <p>
+                O ficheiro vai até 2025, mas 2025 está incompleto para várias colunas de shares energéticas.
+                Por isso, as comparações entre países usam <strong>2024</strong> como último ano comparável completo.
+            </p>
+        </div>
+    </section>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/worldTrendChart.js"></script>
+    <script src="js/rankedBarChart.js"></script>
+    <script src="js/countryScatterplot.js"></script>
+    <script src="js/peerTrendChart.js"></script>
+    <script src="js/countryDonutChart.js"></script>
+    <script src="js/peerHeatmapChart.js"></script>
+    <script src="js/countryRadarChart.js"></script>
+    <script src="js/energyTreemapChart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
