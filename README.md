@@ -31,6 +31,10 @@ O script `process_data.py`:
 - `data/lowest_carbon_countries.csv`
 - `data/peer_trends.csv`
 
+## Ficheiro de suporte geográfico
+
+- `data/world_countries.geojson`
+
 ## Visualizações
 
 Cada secção da dashboard tem um único gráfico principal, para evitar sobreposição visual e tornar a leitura mais clara.
@@ -75,14 +79,19 @@ Cada secção da dashboard tem um único gráfico principal, para evitar sobrepo
 
    ![Grafico 8](/Challenge/images/Grafico8.png)
 
-9. `Data Treatment`
+9. `Global Energy Footprint Map`
+   Esta visualização acrescenta uma leitura espacial que não repete as análises centrais das outras secções. Em vez de voltar a mostrar quota renovável ou intensidade carbónica, o mapa foca três dimensões ainda não usadas como vista principal: consumo energético por habitante, procura elétrica absoluta e população. Isso ajuda a distinguir países grandes de países energeticamente intensivos e a perceber melhor onde a escala do sistema e a intensidade de uso se concentram.
+
+    ![Grafico 9](/Challenge/images/Grafico9.png)
+
+10. `Data Treatment`
    A secção final documenta o tratamento de dados e deixa explícita a lógica metodológica usada na construção da dashboard. Para além de apresentar contagens ligadas à qualidade dos dados, regista a razão principal para a escolha de 2024 como último ano comparável completo: o ficheiro já contém 2025, mas esse ano ainda não tem cobertura consistente em várias colunas críticas para comparação entre países.
 
-   ![Grafico 9](/Challenge/images/Grafico9.png)
+   Esta secção passa a funcionar como fecho metodológico da dashboard, depois das nove visualizações analíticas.
 
+ ![Grafico 10](/Challenge/images/Grafico10.png)
 
 ## Como correr
-
 Na pasta `Challenge`:
 
 ```bash

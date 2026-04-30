@@ -166,7 +166,31 @@
     </section>
 
     <section>
-        <h2>9. Data Treatment</h2>
+        <h2>9. Global Energy Footprint Map</h2>
+        <div class="chart-panel">
+            <div class="panel-heading">
+                <div>
+                    <h3>World Energy Footprint Map</h3>
+                    <p>Leitura espacial de escala e intensidade de uso energético em 2024, com métricas que não aparecem como análise principal nas outras vistas.</p>
+                </div>
+                <div class="controls">
+                    <button class="map-metric active" data-metric="energy_per_capita">Energy per capita</button>
+                    <button class="map-metric" data-metric="electricity_demand">Electricity demand</button>
+                    <button class="map-metric" data-metric="population_millions">Population</button>
+                </div>
+            </div>
+            <div class="map-layout">
+                <div id="map-chart"></div>
+                <aside id="map-detail" class="detail-card compact-detail">
+                    <h4>Map Detail</h4>
+                    <p>Seleciona um país no mapa para ver detalhe e posição relativa nas métricas de escala energética.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>10. Data Treatment</h2>
         <div id="quality-grid" class="quality-grid"></div>
         <div class="method-note">
             <p>
@@ -187,6 +211,7 @@
     <script src="js/peerHeatmapChart.js"></script>
     <script src="js/countryRadarChart.js"></script>
     <script src="js/energyTreemapChart.js"></script>
+    <script src="js/worldChoroplethMap.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

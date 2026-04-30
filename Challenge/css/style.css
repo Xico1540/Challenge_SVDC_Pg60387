@@ -200,7 +200,8 @@ button.active {
 #donut-chart,
 #heatmap-chart,
 #radar-chart,
-#treemap-chart {
+#treemap-chart,
+#map-chart {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -215,6 +216,13 @@ button.active {
 }
 
 .treemap-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 18px;
+    align-items: start;
+}
+
+.map-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 280px;
     gap: 18px;
@@ -344,6 +352,22 @@ svg {
     cursor: pointer;
 }
 
+.map-country {
+    transition: fill 0.24s ease, stroke-width 0.18s ease, opacity 0.18s ease;
+}
+
+.map-country:hover {
+    opacity: 0.94;
+}
+
+.map-label {
+    font-size: 11px;
+    paint-order: stroke;
+    stroke: rgba(255, 253, 248, 0.9);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
 @media (min-width: 960px) {
     .chart-grid {
         grid-template-columns: 1fr 1fr;
@@ -366,7 +390,8 @@ svg {
 
     .panel-heading,
     .country-layout,
-    .treemap-layout {
+    .treemap-layout,
+    .map-layout {
         grid-template-columns: 1fr;
         display: grid;
     }

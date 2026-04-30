@@ -9,6 +9,7 @@ let donutChart;
 let heatmapChart;
 let radarChart;
 let treemapChart;
+let worldMapChart;
 let latestCountryMetrics;
 let summaryKpis;
 
@@ -17,8 +18,9 @@ Promise.all([
     d3.csv("data/world_energy_mix.csv", d3.autoType),
     d3.csv("data/latest_country_metrics.csv", d3.autoType),
     d3.csv("data/peer_trends.csv", d3.autoType),
+    d3.json("data/world_countries.geojson"),
 ])
-    .then(([summary, worldEnergyMix, latestMetrics, peerTrends]) => {
+    .then(([summary, worldEnergyMix, latestMetrics, peerTrends, worldCountries]) => {
         latestCountryMetrics = latestMetrics;
         summaryKpis = summary.kpis;
 
@@ -100,6 +102,18 @@ Promise.all([
                 onCountryClick: renderTreemapDetail,
             },
             latestMetrics
+        );
+
+        worldMapChart = new WorldChoroplethMap(
+            {
+                parentElement: "#map-chart",
+                containerWidth: 760,
+                containerHeight: 470,
+                metric: "energy_per_capita",
+                onCountryClick: renderMapDetail,
+            },
+            latestMetrics,
+            worldCountries
         );
 
         populateSelects(latestMetrics);
@@ -201,6 +215,12 @@ function bindControls() {
         peerTrendChart.updateMetric(d3.select(this).attr("data-metric"));
     });
 
+    d3.selectAll(".map-metric").on("click", function () {
+        d3.selectAll(".map-metric").classed("active", false);
+        d3.select(this).classed("active", true);
+        worldMapChart.updateMetric(d3.select(this).attr("data-metric"));
+    });
+
     d3.select("#donut-country-select").on("change", function () {
         donutChart.updateCountry(this.value);
     });
@@ -256,6 +276,37 @@ function populateSelects(metrics) {
         .attr("value", (d) => d)
         .property("selected", (d) => d === "Portugal")
         .text((d) => d);
+}
+
+function renderMapDetail(country) {
+    const rankByEnergyPerCapita = getMetricRank(country.country, "energy_per_capita");
+    const rankByElectricityDemand = getMetricRank(country.country, "electricity_demand");
+    const rankByPopulation = getMetricRank(country.country, "population_millions");
+
+    d3.select("#map-detail").html(
+        `<h4>${country.country}</h4>` +
+        `<p>${country.year} · ${country.iso_code}</p>` +
+        `<div class="detail-grid">` +
+        `<div class="detail-metric"><span>Energy per capita</span><strong>${formatNumber(country.energy_per_capita)} kWh</strong></div>` +
+        `<div class="detail-metric"><span>Electricity demand</span><strong>${d3.format(".3s")(country.electricity_demand)} TWh</strong></div>` +
+        `<div class="detail-metric"><span>Population</span><strong>${formatNumberOneDecimal(country.population_millions)} M</strong></div>` +
+        `<div class="detail-metric"><span>Primary energy</span><strong>${d3.format(".3s")(country.primary_energy_consumption)} TWh</strong></div>` +
+        `</div>` +
+        `<ul>` +
+        `<li>Posição em consumo energético por habitante: <strong>${rankByEnergyPerCapita} / ${latestCountryMetrics.length}</strong>.</li>` +
+        `<li>Posição em procura elétrica absoluta: <strong>${rankByElectricityDemand} / ${latestCountryMetrics.length}</strong>.</li>` +
+        `<li>Posição em população no subconjunto comparável: <strong>${rankByPopulation} / ${latestCountryMetrics.length}</strong>.</li>` +
+        `<li>Este mapa ajuda a separar países grandes de países intensivos no uso de energia por pessoa.</li>` +
+        `</ul>`
+    );
+}
+
+function getMetricRank(countryName, metric) {
+    const ranking = [...latestCountryMetrics]
+        .filter((d) => d[metric] != null)
+        .sort((a, b) => b[metric] - a[metric]);
+
+    return ranking.findIndex((d) => d.country === countryName) + 1;
 }
 
 function renderTreemapDetail(country) {
